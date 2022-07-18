@@ -30,7 +30,7 @@ export default function Group({ group }: { group: any }) {
               <h1 className="p-2 text-xl md:text-2xl font-bold">
                 {group.symbol + (i + 1)}
               </h1>
-              <div className="w-[40px] h-[30px]">
+              <div className="w-[40px] h-[30px] flex justify-center bg-white">
                 <Image src={team.flag ?? ""} width={40} height={30} alt="" />
               </div>
               <h1 className="text-lg md:text-xl font-bold text-gray-500">
