@@ -96,7 +96,7 @@ function getCountDownToQatar22(time: number) {
       value: minutes,
     },
     {
-      label: "sec",
+      label: "seconds",
       value: sec,
     },
   ];
