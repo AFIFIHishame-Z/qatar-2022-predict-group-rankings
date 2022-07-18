@@ -52,7 +52,7 @@ export default function Header() {
                 <h2 className="text-center">{val.label}</h2>
               </div>
               <div>
-                {val.label !== "sec" && (
+                {val.label !== "seconds" && (
                   <div className="space-y-2 mx-5">
                     <div className="flex justify-center">
                       <h1
