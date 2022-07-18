@@ -53,7 +53,7 @@ export default function Header() {
               </div>
               <div>
                 {val.label !== "seconds" && (
-                  <div className="space-y-2 mx-5">
+                  <div className="md:mx-5 mx-4">
                     <div className="flex justify-center">
                       <h1
                         className="w-3 h-3 rounded-full"
