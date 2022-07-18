@@ -216,7 +216,7 @@ export default function Content() {
   const [teams, setTeams] = useState(groups);
   return (
     <div
-      className="container mx-auto shadow-xl  rounded-lg  pb-5"
+      className="container mx-auto shadow-xl  rounded-lg  py-5 px-1"
       style={{
         background:
           "linear-gradient(rgb(138, 21, 56) -205.33%, rgb(210, 10, 70) 186.82%)",
@@ -225,7 +225,7 @@ export default function Content() {
       <div className="flex justify-between  items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="w-[70px] h-[70px] lg:w-auto lg:h-auto "
+          className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] lg:w-auto lg:h-auto "
           src="/images/flagIcon.svg"
           alt=""
         />
@@ -236,14 +236,14 @@ export default function Content() {
           >
             DRAW PREDICTOR
           </h1>
-          <h1 className="text-center lg:text-start">
+          <h1 className="text-xs mg:text-md text-center lg:text-start">
             Predict the FIFA World Cup Qatar 2022 group rankings and share with
             your friends
           </h1>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="w-[70px] h-[70px] lg:w-auto lg:h-auto relative -top-1"
+          className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] lg:w-auto lg:h-auto relative -top-1"
           src="/images/gatesIcon.svg"
           alt=""
         />
