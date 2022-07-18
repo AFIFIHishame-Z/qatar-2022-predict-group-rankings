@@ -17,7 +17,7 @@ export default function Group({ group }: { group: any }) {
       <div className="w-[300px] sm:w-[300px] md:w-[350px] lg:w-[250px] xl:w-[300px] bg-white rounded-2xl p-3">
         <div
           style={{ color: "rgb(223, 206, 109)" }}
-          className="text-2xl font-bold text-center"
+          className="text-xl md:text-2xl font-bold text-center"
         >
           {group.name}
         </div>
@@ -27,13 +27,15 @@ export default function Group({ group }: { group: any }) {
               key={i}
               className="flex items-center space-x-1 bg-gray-100 my-2 cursor-move"
             >
-              <h1 className="p-2 text-2xl font-bold">
-                {group.symbol + " " + (i + 1)}
+              <h1 className="p-2 text-xl md:text-2xl font-bold">
+                {group.symbol + (i + 1)}
               </h1>
               <div className="w-[40px] h-[30px]">
                 <Image src={team.flag ?? ""} width={40} height={30} alt="" />
               </div>
-              <h1 className="text-xl font-bold text-gray-500">{team.name}</h1>
+              <h1 className="text-lg md:text-xl font-bold text-gray-500">
+                {team.name}
+              </h1>
             </div>
           ))}
         </ReactSortable>

@@ -11,7 +11,7 @@ export default function Footer() {
   const [showModal, setShowModal] = React.useState(false);
 
   return (
-    <div className="w-full bg-white flex flex-col sm:flex-row items-center justify-between px-5 py-5 rounded-lg space-y-4 ">
+    <div className="w-full bg-white flex flex-col sm:flex-row items-center justify-between px-5 py-2 md:py-5 rounded-lg space-y-2 md:space-y-4 ">
       <div>
         <p className="flex items-center justify-center sm:justify-start space-x-1 italic">
           <BiShareAlt className="text-2xl" />
@@ -22,7 +22,7 @@ export default function Footer() {
       <div>
         <button
           onClick={() => setShowModal(true)}
-          className="px-14 font-bold text-xl p-2  bg-gradient-to-b from-yellow-200 to-yellow-400 border border-yellow-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 active:from-yellow-400 active:to-yellow-500"
+          className="px-14 font-bold text-lg md:text-xl p-2  bg-gradient-to-b from-yellow-200 to-yellow-400 border border-yellow-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 active:from-yellow-400 active:to-yellow-500"
         >
           SHARE
         </button>
