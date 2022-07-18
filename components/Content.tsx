@@ -236,7 +236,7 @@ export default function Content() {
           >
             DRAW PREDICTOR
           </h1>
-          <h1 className="text-xs md:text-md text-center lg:text-start">
+          <h1 className="text-xs md:text-xl xl:text-2xl text-center lg:text-start">
             Predict the FIFA World Cup Qatar 2022 group rankings and share with
             your friends
           </h1>
