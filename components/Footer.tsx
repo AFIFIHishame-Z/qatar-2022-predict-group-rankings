@@ -7,6 +7,7 @@ import {
   FaInstagramSquare,
   FaTwitterSquare,
 } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 export default function Footer() {
   const [showModal, setShowModal] = React.useState(false);
 
@@ -35,7 +36,7 @@ export default function Footer() {
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   {/*header*/}
                   <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                    <h3 className="textxl lg:text-2xl font-semibold">
+                    <h3 className="text-md lg:text-2xl font-semibold">
                       Share your prediction results
                     </h3>
                     <button
@@ -55,11 +56,27 @@ export default function Footer() {
                         alt=""
                       />
                     </div>
-                    <p className="my-4 text-slate-500 text-lg leading-relaxed text-center">
+                    <p className="my-4 text-slate-500 text-sm md:text-md lg:text-lg leading-relaxed text-center">
                       Share your FIFA World Cup Qatar 2022™️ group rankings
                       predictions with your friends and see if they agree with
                       you!
                     </p>
+                    <div className="mt-5 lg:px-10 mx-auto ">
+                      <p className="text-slate-700 text-semibold text-sm md:text-md lg:text-lg py-1">
+                        Signup for our newsletter to get the latest news in your
+                        inbox.
+                      </p>
+                      <div className="flex items-center h-12 rounded-md flex-grow bg-purple-800 hover:bg-purple-900 p-1">
+                        <input
+                          type="text"
+                          className="p-2 w-6 h-full flex-grow flex-shrink rounded-l-md focus:outline-none"
+                        />
+                        <MdEmail className="h-12 w-12 p-2 text-white" />
+                      </div>
+                      <p className="text-slate-700 dark:text-slate-300 text-sm text-semibold py-1">
+                        Your email is safe with us. We don&apos;t spam.
+                      </p>
+                    </div>
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b space-x-2">
