@@ -10,6 +10,8 @@ import {
 import { MdEmail } from "react-icons/md";
 import * as htmlToImage from "html-to-image";
 
+import { FacebookShareButton, FacebookIcon } from "next-share";
+
 export default function Footer() {
   const [showModal, setShowModal] = React.useState(false);
 
@@ -47,7 +49,7 @@ export default function Footer() {
       title: "Image",
       text: "image",
     };
-    if (!navigator.canShare(data)) {
+    if (!navigator.canShare) {
       console.error("Can't share");
     }
     await navigator.share(data);
@@ -55,6 +57,15 @@ export default function Footer() {
   return (
     <div className="w-full bg-white flex flex-col sm:flex-row items-center justify-between px-5 py-2 md:py-5 rounded-lg space-y-2 md:space-y-4 ">
       <div>
+        <FacebookShareButton
+          url={"https://github.com/next-share"}
+          quote={
+            "next-share is a social share buttons for your next React apps."
+          }
+          hashtag={"#nextshare"}
+        >
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
         <p className="flex items-center justify-center sm:justify-start space-x-1 italic">
           <BiShareAlt className="text-2xl" />
           <span className="text-lg">Share</span>
