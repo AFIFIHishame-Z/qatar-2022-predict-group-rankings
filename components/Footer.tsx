@@ -16,6 +16,10 @@ export default function Footer() {
   const downloadImage = async () => {
     const scale = 2;
     const node = document.getElementById("groups")!;
+    const newNode = document.createElement("div");
+
+    node.classList.remove("grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-4");
+    node.classList.add("grid-cols-4", "w-[1300px]");
     const style = {
       transform: "scale(" + scale + ")",
       transformOrigin: "top left",

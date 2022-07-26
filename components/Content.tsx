@@ -253,7 +253,7 @@ export default function Content() {
         id="groups"
       >
         {groups.map((group, i) => (
-          <div key={i} className={`${i > 3 ? "mt-5" : ""} `}>
+          <div key={i} className="my-5">
             <Group group={group} />
           </div>
         ))}
