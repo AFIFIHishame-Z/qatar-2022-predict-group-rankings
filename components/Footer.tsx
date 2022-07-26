@@ -35,13 +35,18 @@ export default function Footer() {
       style,
     };
 
-    const dataUrl = await htmlToImage.toJpeg(newNode, param);
+    const dataUrl = await htmlToImage.toBlob(newNode, param);
     node.classList.add("grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-4");
     node.classList.remove("grid-cols-4", "w-[1300px]");
-    const link = document.createElement("a");
-    link.download = "my-prediction.jpeg";
-    link.href = dataUrl;
-    link.click();
+    const data = {
+      title: "MDN",
+      text: "Learn web development on MDN!",
+      url: "https://developer.mozilla.org",
+    };
+    if (!navigator.canShare(data)) {
+      console.error("Can't share");
+    }
+    await navigator.share(data);
   };
   return (
     <div className="w-full bg-white flex flex-col sm:flex-row items-center justify-between px-5 py-2 md:py-5 rounded-lg space-y-2 md:space-y-4 ">
