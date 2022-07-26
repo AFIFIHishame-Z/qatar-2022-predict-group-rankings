@@ -39,9 +39,13 @@ export default function Footer() {
     node.classList.add("grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-4");
     node.classList.remove("grid-cols-4", "w-[1300px]");
     const data = {
-      title: "MDN",
-      text: "Learn web development on MDN!",
-      url: "https://developer.mozilla.org",
+      files: [
+        new File([dataUrl!], "my-prediction.png", {
+          type: dataUrl!.type,
+        }),
+      ],
+      title: "Image",
+      text: "image",
     };
     if (!navigator.canShare(data)) {
       console.error("Can't share");
