@@ -8,9 +8,35 @@ import {
   FaTwitterSquare,
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import * as htmlToImage from "html-to-image";
+
 export default function Footer() {
   const [showModal, setShowModal] = React.useState(false);
 
+  const downloadImage = async () => {
+    const scale = 2;
+    const node = document.getElementById("groups")!;
+    const style = {
+      transform: "scale(" + scale + ")",
+      transformOrigin: "top left",
+      width: node.offsetWidth + "px",
+      height: node.offsetHeight + "px",
+    };
+
+    const param = {
+      backgroundColor: "#dfce6d",
+      height: node.offsetHeight * scale,
+      width: node.offsetWidth * scale,
+      quality: 1,
+      style,
+    };
+
+    const dataUrl = await htmlToImage.toJpeg(node, param);
+    const link = document.createElement("a");
+    link.download = "my-prediction.jpeg";
+    link.href = dataUrl;
+    link.click();
+  };
   return (
     <div className="w-full bg-white flex flex-col sm:flex-row items-center justify-between px-5 py-2 md:py-5 rounded-lg space-y-2 md:space-y-4 ">
       <div>
@@ -80,7 +106,10 @@ export default function Footer() {
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b space-x-2">
-                    <FaFacebookSquare className="text-5xl text-blue-600 hover:text-blue-700 cursor-pointer" />
+                    <FaFacebookSquare
+                      onClick={downloadImage}
+                      className="text-5xl text-blue-600 hover:text-blue-700 cursor-pointer"
+                    />
                     <FaInstagramSquare className="text-5xl text-red-600 hover:text-red-700 cursor-pointer" />
                     <FaTwitterSquare className="text-5xl text-blue-500 hover:text-blue-600 cursor-pointer" />
                   </div>

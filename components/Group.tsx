@@ -6,14 +6,6 @@ export default function Group({ group }: { group: any }) {
   const [teams, setTeams] = useState(group.teams);
   return (
     <div className="lg:flex items-center space-x-5">
-      {/* {position === "before" && (
-        <div>
-          <div className="space-y-4">
-            <div className="w-[200px] h-[50px] bg-white"></div>
-            <div className="w-[200px] h-[50px] bg-white"></div>
-          </div>
-        </div>
-      )} */}
       <div className="w-[300px] sm:w-[300px] md:w-[350px] lg:w-[250px] xl:w-[300px] bg-white rounded-2xl p-3">
         <div
           style={{ color: "rgb(223, 206, 109)" }}
@@ -31,7 +23,8 @@ export default function Group({ group }: { group: any }) {
                 {group.symbol + (i + 1)}
               </h1>
               <div className="w-[40px] h-[30px] flex justify-center bg-white">
-                <Image src={team.flag ?? ""} width={40} height={30} alt="" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={team.flag ?? ""} width={40} height={30} alt="" />
               </div>
               <h1 className="text-lg md:text-xl font-bold text-gray-500">
                 {team.name}
@@ -44,14 +37,6 @@ export default function Group({ group }: { group: any }) {
           <img src="/images/prediction.svg" alt="" />
         </div>
       </div>
-      {/* {position === "after" && (
-        <div>
-          <div className="space-y-4">
-            <div className="w-[200px] h-[50px] bg-white"></div>
-            <div className="w-[200px] h-[50px] bg-white"></div>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }

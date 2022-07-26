@@ -248,63 +248,15 @@ export default function Content() {
           alt=""
         />
       </div>
-      <div className="grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-5">
+      <div
+        className="grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 py-10 "
+        id="groups"
+      >
         {groups.map((group, i) => (
-          <div key={i} className={`mt-5`}>
+          <div key={i} className={`${i > 3 ? "mt-5" : ""} `}>
             <Group group={group} />
           </div>
         ))}
-
-        {/* <div>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className={`mt-5`}>
-              <Group position="after" />
-              {(i + 1) % 2 !== 0 && (
-                <div
-                  className="space-y-4"
-                  style={{ position: "relative", left: "400px" }}
-                >
-                  <div className="w-[200px] h-[50px] bg-white"></div>
-                  <div className="w-[200px] h-[50px] bg-white"></div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="space-y-20 relative -top-32">
-          <div className="space-y-4">
-            <div className="  flex justify-center">
-              <img
-                className=" mt-40 "
-                src={"/images/FIFA-World-Cup-Qatar-2022-emblem.webp"}
-                alt=""
-              />
-            </div>
-            <div className="w-[200px] h-[50px] bg-white mx-auto"></div>
-            <div className="w-[200px] h-[50px] bg-white mx-auto"></div>
-          </div>
-          <div className="text-center font-extrabold text-3xl text-white">
-            The award
-            <div className="w-[250px] h-[50px] bg-white top-52 mx-auto"></div>
-          </div>
-        </div>
-
-        <div>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className={`mt-5`}>
-              <Group position="before" />
-              {(i + 1) % 2 !== 0 && (
-                <div
-                  className="space-y-4 "
-                  style={{ position: "relative", right: "125px" }}
-                >
-                  <div className="w-[200px] h-[50px] bg-white"></div>
-                  <div className="w-[200px] h-[50px] bg-white"></div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div> */}
       </div>
     </div>
   );
