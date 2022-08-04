@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import React from "react";
 import { BiShareAlt } from "react-icons/bi";
 import { GrFormClose } from "react-icons/gr";
@@ -9,11 +9,21 @@ import {
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import * as htmlToImage from "html-to-image";
+import storage from "~/firebaseConfig";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { v4 as uuidv4 } from "uuid";
+import {
+  FacebookShareButton,
+  FacebookShareCount,
+  TwitterShareButton,
+} from "next-share";
 
 export default function Footer() {
   const [showModal, setShowModal] = React.useState(false);
   const [isComplete, setIsComplete] = React.useState(true);
   const [dataUrl, setDataUrl] = React.useState("");
+  const [percent, setPercent] = React.useState(0);
+  const [imageUrl, setImageUrl] = React.useState("");
   const prepareImage = async () => {
     const scale = 2;
     const node = document.getElementById("groups")!;
@@ -38,16 +48,39 @@ export default function Footer() {
     const DATA_URL = await htmlToImage.toPng(newNode, param);
     setDataUrl(DATA_URL);
 
-    node.classList.add("grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-4");
-    node.classList.remove("grid-cols-4", "w-[1300px]");
-    setIsComplete(true);
+    const file = await urlToFile(
+      DATA_URL,
+      `prediction_${uuidv4()}.png`,
+      "image/png"
+    );
+
+    const storageRef = ref(storage, `/files/${file.name}`);
+
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+
+        // update progress
+        setPercent(percent);
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setImageUrl(url);
+          node.classList.add("grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-4");
+          node.classList.remove("grid-cols-4", "w-[1300px]");
+          setIsComplete(true);
+        });
+      }
+    );
   };
-  const downloadImage = () => {
-    let link = document.createElement("a");
-    link.download = "my-prediction.png";
-    link.href = dataUrl;
-    link.click();
-  };
+
   return (
     <div className="w-full bg-white flex flex-col sm:flex-row items-center justify-between px-5 py-2 md:py-5 rounded-lg space-y-2 md:space-y-4 ">
       <div>
@@ -127,12 +160,20 @@ export default function Footer() {
                     </div>
                     {/*footer*/}
                     <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b space-x-2">
-                      <FaFacebookSquare
-                        onClick={downloadImage}
-                        className="text-5xl text-blue-600 hover:text-blue-700 cursor-pointer"
-                      />
+                      <FacebookShareButton
+                        url={imageUrl}
+                        openShareDialogOnClick={imageUrl !== ""}
+                      >
+                        <FaFacebookSquare className="text-5xl text-blue-600 hover:text-blue-700 cursor-pointer" />
+                      </FacebookShareButton>
                       <FaInstagramSquare className="text-5xl text-red-600 hover:text-red-700 cursor-pointer" />
-                      <FaTwitterSquare className="text-5xl text-blue-500 hover:text-blue-600 cursor-pointer" />
+
+                      <TwitterShareButton
+                        url={imageUrl}
+                        openShareDialogOnClick={imageUrl !== ""}
+                      >
+                        <FaTwitterSquare className="text-5xl text-blue-500 hover:text-blue-600 cursor-pointer" />
+                      </TwitterShareButton>
                     </div>
                   </div>
                 </div>
@@ -161,3 +202,9 @@ export default function Footer() {
     </div>
   );
 }
+
+const urlToFile = async (url: string, filename: string, mimeType: string) => {
+  const res = await fetch(url);
+  const buf = await res.arrayBuffer();
+  return new File([buf], filename, { type: mimeType });
+};
