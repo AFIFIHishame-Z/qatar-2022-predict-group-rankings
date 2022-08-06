@@ -48,11 +48,9 @@ export default function Footer() {
     const DATA_URL = await htmlToImage.toPng(newNode, param);
     setDataUrl(DATA_URL);
 
-    const file = await urlToFile(
-      DATA_URL,
-      `prediction_${uuidv4()}.png`,
-      "image/png"
-    );
+    const id = uuidv4();
+
+    const file = await urlToFile(DATA_URL, `prediction_${id}.png`, "image/png");
 
     const storageRef = ref(storage, `/files/${file.name}`);
 
@@ -72,10 +70,59 @@ export default function Footer() {
       () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setImageUrl(url);
-          node.classList.add("grid-cols-1", "sm:grid-cols-2", "lg:grid-cols-4");
-          node.classList.remove("grid-cols-4", "w-[1300px]");
-          setIsComplete(true);
+          var html = new Blob(
+            [
+              `<html>
+                <head>
+                <meta property="og:image:secure_url"   content="${url}" />
+                <meta property="og:url"                content="http://localhost:3000/" />
+                <meta property="og:type"               content="website" />
+                <meta property="og:title"              content="Qatar fifa world cup 2022 " />
+                <meta property="og:site_name"              content="Qatar 22 predictions" />
+                <meta property="og:description"        content="Predict the FIFA World Cup Qatar 2022 group rankings and share with your friends" />
+               <script>
+                window.location.href = 'http://localhost:3000/';
+               </script>
+                </head> 
+                <body>
+                <img src="${url}" alt="" srcset="" />
+                </body>
+              </html>`,
+            ],
+            {
+              type: "text/html",
+            }
+          );
+
+          const storageRefHtml = ref(storage, `/files/prediction_${id}.html`);
+
+          const uploadTaskHtml = uploadBytesResumable(storageRefHtml, html);
+
+          uploadTaskHtml.on(
+            "state_changed",
+            (snapshot) => {
+              const percent = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+              );
+
+              // update progress
+              setPercent(percent);
+            },
+            (err) => console.log(err),
+            () => {
+              // download url
+              getDownloadURL(uploadTaskHtml.snapshot.ref).then((url) => {
+                setImageUrl(url);
+                node.classList.add(
+                  "grid-cols-1",
+                  "sm:grid-cols-2",
+                  "lg:grid-cols-4"
+                );
+                node.classList.remove("grid-cols-4", "w-[1300px]");
+                setIsComplete(true);
+              });
+            }
+          );
         });
       }
     );
