@@ -75,13 +75,13 @@ export default function Footer() {
               `<html>
                 <head>
                 <meta property="og:image:secure_url"   content="${url}" />
-                <meta property="og:url"                content="http://localhost:3000/" />
+                <meta property="og:url"                content="${process.env.HOSTNAME}" />
                 <meta property="og:type"               content="website" />
                 <meta property="og:title"              content="Qatar fifa world cup 2022 " />
-                <meta property="og:site_name"              content="Qatar 22 predictions" />
+                <meta property="og:site_name"          content="Qatar 22 predictions" />
                 <meta property="og:description"        content="Predict the FIFA World Cup Qatar 2022 group rankings and share with your friends" />
                <script>
-                window.location.href = 'http://localhost:3000/';
+                window.location.href = '${process.env.HOSTNAME}';
                </script>
                 </head> 
                 <body>
