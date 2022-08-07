@@ -74,12 +74,8 @@ export default function Footer() {
             [
               `<html>
                 <head>
-                <meta property="og:image:secure_url"   content="${encodeURIComponent(
-                  url
-                )}" />
-                <meta property="og:url"                content="${
-                  process.env.NEXT_PUBLIC_HOSTNAME
-                }" />
+                <meta property="og:image:secure_url"   content="${url}" />
+                <meta property="og:url"                content="${process.env.NEXT_PUBLIC_HOSTNAME}" />
                 <meta property="og:type"               content="website" />
                 <meta property="og:title"              content="Qatar fifa world cup 2022 " />
                 <meta property="og:site_name"          content="Qatar 22 predictions" />
@@ -89,7 +85,7 @@ export default function Footer() {
                </script>
                 </head> 
                 <body>
-                <img src="${encodeURIComponent(url)}" alt="" srcset="" />
+                <img src="${url}" alt="" srcset="" />
                 </body>
               </html>`,
             ],
