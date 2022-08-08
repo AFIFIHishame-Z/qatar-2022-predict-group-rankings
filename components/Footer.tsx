@@ -70,6 +70,9 @@ export default function Footer() {
             [
               `<html>
                 <head>
+                <meta property="og:image"   content="${url}" />
+                <meta property="og:url"                content="${process.env.NEXT_PUBLIC_HOSTNAME}" />
+                <meta property="og:type"               content="website" />
                 <meta property="og:title"              content="Qatar fifa world cup 2022 " />
                 <meta property="og:description"        content="Predict the FIFA World Cup Qatar 2022 group rankings and share with your friends" />
                <script>
@@ -77,7 +80,6 @@ export default function Footer() {
                </script>
                 </head> 
                 <body>
-                  <span>AFIFI Hishame</span>
                 </body>
               </html>`,
             ],
