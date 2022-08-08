@@ -206,14 +206,22 @@ export default function Footer() {
                     </div>
                     {/*footer*/}
                     <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b space-x-2">
-                      <FacebookShareButton url={imageUrl}>
+                      <FacebookShareButton
+                        url={imageUrl}
+                        openShareDialogOnClick={imageUrl !== ""}
+                      >
                         <FaFacebookSquare className="text-5xl text-blue-600 hover:text-blue-700 cursor-pointer" />
                       </FacebookShareButton>
-                      <FaInstagramSquare className="text-5xl text-red-600 hover:text-red-700 cursor-pointer" />
-
-                      <TwitterShareButton url={imageUrl}>
-                        <FaTwitterSquare className="text-5xl text-blue-500 hover:text-blue-600 cursor-pointer" />
-                      </TwitterShareButton>
+                      <FaInstagramSquare
+                        onClick={() => {
+                          navigator.share({
+                            title: "Qtar 22",
+                            text: "Hello World",
+                            url: imageUrl,
+                          });
+                        }}
+                        className="text-5xl text-red-600 hover:text-red-700 cursor-pointer"
+                      />
                     </div>
                   </div>
                 </div>
