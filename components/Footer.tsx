@@ -52,7 +52,7 @@ export default function Footer() {
 
     const file = await urlToFile(DATA_URL, `prediction_${id}.png`, "image/png");
 
-    const storageRef = ref(storage, `/files/${file.name}`);
+    const storageRef = ref(storage, `${file.name}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -75,9 +75,7 @@ export default function Footer() {
               `<html>
                 <head>
                 <meta property="og:image:secure_url"   content="${url}" />
-                <meta property="og:url"                content="${
-                  process.env.NEXT_PUBLIC_HOSTNAME
-                }" />
+                <meta property="og:url"                content="${process.env.NEXT_PUBLIC_HOSTNAME}" />
                 <meta property="og:type"               content="website" />
                 <meta property="og:title"              content="Qatar fifa world cup 2022 " />
                 <meta property="og:site_name"          content="Qatar 22 predictions" />
@@ -87,10 +85,7 @@ export default function Footer() {
                </script>
                 </head> 
                 <body>
-                <img src="${url.replace(
-                  "files/",
-                  "files%2F"
-                )}" alt="" srcset="" />
+                <img src="${url}" alt="" srcset="" />
                 </body>
               </html>`,
             ],
@@ -99,7 +94,7 @@ export default function Footer() {
             }
           );
 
-          const storageRefHtml = ref(storage, `/files/prediction_${id}.html`);
+          const storageRefHtml = ref(storage, `prediction_${id}.html`);
 
           const uploadTaskHtml = uploadBytesResumable(storageRefHtml, html);
 
