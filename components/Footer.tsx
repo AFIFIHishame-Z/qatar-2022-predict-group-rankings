@@ -21,8 +21,6 @@ import {
 export default function Footer() {
   const [showModal, setShowModal] = React.useState(false);
   const [isComplete, setIsComplete] = React.useState(true);
-  const [dataUrl, setDataUrl] = React.useState("");
-  const [percent, setPercent] = React.useState(0);
   const [imageUrl, setImageUrl] = React.useState("");
   const prepareImage = async () => {
     const scale = 2;
@@ -46,7 +44,6 @@ export default function Footer() {
     };
 
     const DATA_URL = await htmlToImage.toPng(newNode, param);
-    setDataUrl(DATA_URL);
 
     const id = uuidv4();
 
@@ -64,7 +61,6 @@ export default function Footer() {
         );
 
         // update progress
-        setPercent(percent);
       },
       (err) => console.log(err),
       () => {
@@ -74,9 +70,6 @@ export default function Footer() {
             [
               `<html>
                 <head>
-                <meta property="og:image"   content="${url}" />
-                <meta property="og:url"                content="${process.env.NEXT_PUBLIC_HOSTNAME}" />
-                <meta property="og:type"               content="website" />
                 <meta property="og:title"              content="Qatar fifa world cup 2022 " />
                 <meta property="og:description"        content="Predict the FIFA World Cup Qatar 2022 group rankings and share with your friends" />
                <script>
@@ -105,7 +98,6 @@ export default function Footer() {
               );
 
               // update progress
-              setPercent(percent);
             },
             (err) => console.log(err),
             () => {
