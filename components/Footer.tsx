@@ -78,7 +78,6 @@ export default function Footer() {
                 </head> 
                 <body>
                   <span>AFIFI Hishame</span>
-                  <img src="${url}" alt="" srcset="" />
                 </body>
               </html>`,
             ],
