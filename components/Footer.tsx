@@ -206,33 +206,14 @@ export default function Footer() {
                     </div>
                     {/*footer*/}
                     <div className="flex items-center justify-center p-6 border-t border-solid border-slate-200 rounded-b space-x-2">
-                      <FacebookShareButton
-                        url={imageUrl}
-                        openShareDialogOnClick={imageUrl !== ""}
-                      >
-                        <FaFacebookSquare className="text-5xl text-blue-600 hover:text-blue-700 cursor-pointer" />
-                      </FacebookShareButton>
-                      <FaInstagramSquare
-                        onClick={() => {
-                          const navigator = window.navigator as any;
-
-                          if (navigator.share) {
-                            navigator
-                              .share({
-                                title: "Google",
-                                text: "Save",
-                                url: "https://google.com",
-                              })
-                              .then(() => alert("Successful share"))
-                              .catch((error: any) =>
-                                alert("Error sharing" + error)
-                              );
-                          } else {
-                            alert("share not supported");
-                          }
-                        }}
-                        className="text-5xl text-red-600 hover:text-red-700 cursor-pointer"
-                      />
+                      {imageUrl !== "" && (
+                        <FacebookShareButton
+                          url={imageUrl}
+                          openShareDialogOnClick={imageUrl !== ""}
+                        >
+                          <FaFacebookSquare className="text-5xl text-blue-600 hover:text-blue-700 cursor-pointer" />
+                        </FacebookShareButton>
+                      )}
                     </div>
                   </div>
                 </div>
