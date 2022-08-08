@@ -214,11 +214,22 @@ export default function Footer() {
                       </FacebookShareButton>
                       <FaInstagramSquare
                         onClick={() => {
-                          navigator.share({
-                            title: "Qtar 22",
-                            text: "Hello World",
-                            url: imageUrl,
-                          });
+                          const navigator = window.navigator as any;
+
+                          if (navigator.share) {
+                            navigator
+                              .share({
+                                title: "Google",
+                                text: "Save",
+                                url: "https://google.com",
+                              })
+                              .then(() => alert("Successful share"))
+                              .catch((error: any) =>
+                                alert("Error sharing" + error)
+                              );
+                          } else {
+                            alert("share not supported");
+                          }
                         }}
                         className="text-5xl text-red-600 hover:text-red-700 cursor-pointer"
                       />
